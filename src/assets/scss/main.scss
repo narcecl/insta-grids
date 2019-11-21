@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Ubuntu:400,500,700&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+@mixin transition($property: all, $time: .3s){
+	-webkit-transition: $property $time ease;
+	-moz-transition: $property $time ease;
+	-o-transition: $property $time ease;
+	transition: $property $time ease;
+}
+
+@import "reset.scss";
+@import "grid.scss";
+@import "helpers.scss";
+
+.text{
+	&-left{text-align:left !important}
+	&-right{text-align:right !important}
+	&-center{text-align:center !important}
+
+	@media (min-width: 768px) {
+		&-md-left{text-align:left !important}
+		&-md-right{text-align:right !important}
+		&-md-center{text-align:center !important}
+	}
+
+	@media (min-width: 992px) {
+		&-lg-left{text-align:left !important}
+		&-lg-right{text-align:right !important}
+		&-lg-center{text-align:center !important}
+	}
+
+	@media (min-width: 1200px) {
+		&-xl-left{text-align:left !important}
+		&-xl-right{text-align:right !important}
+		&-xl-center{text-align:center !important}
+	}
+}
+
+body{font-family: 'Open Sans' !important;background: #fafafa;}
+h1,h2,h3,h4,h5,h6{font-family: 'Ubuntu' !important;}
+p{font-size:14px;line-height:normal;color:#555;}
+
+.seccion{
+	padding:48px;
+}
+
+#app{
+	min-height:100vh;
+	transition:all .3s ease;
+	
+	&.dark{
+		background:#191919;
+	}
+}
