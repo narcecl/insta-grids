@@ -1,12 +1,12 @@
 <template>
 	<div class="drag-area">
-		<label for="images">
+		<label for="images" @drop.prevent="handleDrop" @dragover.prevent @dragenter.prevent>
 			<div class="drag-cont">
 				<span class="fa fa-picture-o"></span>
-				<h2 class="mb-8">Selecciona tus imágenes</h2>
-				<p class="w-100 center">Arrastra tus imágenes para organizarlas o haz click aquí para buscarlas entre tus archivos.</p>
+				<h2 class="mb-4 fw-semibold">Empieza a crear tu feed</h2>
+				<p class="w-100 w-sm-35 center">Arrastra tus imágenes o haz clic aquí para buscarlas entre tus archivos.</p>
 			</div>
-			<input type="file" name="images" id="images" ref="file" @change="handleFile">
+			<input type="file" ref="file" id="images" multiple accept="image/x-png,image/gif,image/jpeg" @change="handleFile">
 		</label>
 	</div>
 </template>
@@ -20,9 +20,20 @@
 			};
 		},
 		methods: {
+			addPost: function(items){
+				items.forEach(item => {
+					this.$store.commit('addPost', URL.createObjectURL(item));
+				});
+			},
 			handleFile: function(e){
-				let file = e.target.files[0];
-				this.$store.commit('addPost', URL.createObjectURL(file));
+				if( e.target.files.length ){
+					this.addPost(e.target.files);
+				}
+			},
+			handleDrop: function(e){
+				if( e.dataTransfer.files.length ){
+					this.addPost(e.dataTransfer.files);
+				}
 			}
 		}
 	}
@@ -32,8 +43,8 @@
 	.dark{
 		.drag-area{
 			.drag-cont{
-				background:#333;
-				*{color:#fff;}
+				background: #333;
+				*{color: #fff;}
 			}
 		}
 	}
@@ -52,21 +63,27 @@
 				border-color: rgba(195, 224, 251, .5);
 				background: rgba(195, 224, 251, .2);
 			}
+			
 			*{transition: all .3s ease;}
 			h2{font-size:18px;color:#333;}
-			span{font-size:38px;display:block;margin-bottom:24px;color:#555;}
+			span{font-size:38px;display:block;margin-bottom:16px;color:#555;}
 
 			.btn-importar{background: #3897f0;padding: 12px 32px;border-radius: 36px;font-size: 13px;color: #fff;text-transform: uppercase;}
 		}
+
 		label{
-			cursor:pointer;
-			display:block;
-			width:100%;
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			position: relative;
 
 			input{
-				width:0;
-				height:0;
+				width: 0;
+				height: 0;
 				position:absolute;
+				// opacity:0;
+				// left:0;
+				// top: 0;
 			}
 		}
 	}

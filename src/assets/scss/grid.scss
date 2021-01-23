@@ -1,5 +1,5 @@
-html{box-sizing:border-box;-ms-overflow-style:scrollbar}
-*,::before,::after{box-sizing:inherit}
+html{box-sizing:border-box;-ms-overflow-style:scrollbar;}
+*,::before,::after{box-sizing:inherit;}
 .hidden{display:none;}
 
 .container{
@@ -39,7 +39,8 @@ html{box-sizing:border-box;-ms-overflow-style:scrollbar}
 	&.mini{
 		margin-left: -7.5px;
 		margin-right: -7.5px;
-		> .col, > [class*="col-"]{
+
+		> .col, > [class*="col-"], > *{
 			padding-left:7.5px;
 			padding-right:7.5px;
 		}
@@ -47,14 +48,14 @@ html{box-sizing:border-box;-ms-overflow-style:scrollbar}
 
 	&.total{
 		margin: -15px;
-		> .col, > [class*="col-"]{
+		> .col, > [class*="col-"], > *{
 			padding:15px;
 		}
 
 		&.mini{
-			margin:-7.5px -15px;
-			> .col, > [class*="col-"]{
-				padding:7.5px 15px;
+			margin:-7.5px;
+			> .col, > [class*="col-"], > *{
+				padding:7.5px;
 			}
 		}
 	}

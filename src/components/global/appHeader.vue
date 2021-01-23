@@ -2,26 +2,32 @@
 	<div class="app-header">
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="col-6">
+				<div class="col-8">
 					<div class="mark-content">
 						<h1>Grids</h1>
-						<span>Instagram Planner</span>
+						<span>Feed Planner</span>
 					</div>
 				</div>
-				<div class="col-6 text-right">
-					<boton class="btn-ingresar" text="Ingresar con Instagram" icon="instagram" :func="openLogin"/>
+				<div class="col-4 text-right">
+					<darkMode/>
 				</div>
+				<!-- <div class="col-6 text-right">
+					<button class="btn-ingresar" text="Ingresar con Instagram" icon="instagram" :func="openLogin"/>
+				</div> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import boton from './boton.vue'
+	// import button from './button.vue';
+	import darkMode from './darkMode.vue';
+
 	export default{
 		name: 'appHeader',
 		components: {
-			boton
+			// button,
+			darkMode
 		},
 		methods: {
 			openLogin: function(){

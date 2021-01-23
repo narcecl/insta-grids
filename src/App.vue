@@ -1,18 +1,14 @@
 <template>
-	<div id="app" :class="{ dark: $store.getters.isDark }">
+	<div id="app" :class="{ dark: $store.getters.getTheme === 'dark' }">
 		<appHeader/>
 
 		<section class="seccion">
 			<div class="container">
 				<dragArea/>
-
-				<div class="mt-48">
-					<postArea/>
-				</div>
+				<postArea/>
 			</div>
 		</section>
 
-		<darkMode/>
 		<appFooter/>
 	</div>
 </template>
@@ -30,8 +26,21 @@ export default {
 		appHeader,
 		dragArea,
 		postArea,
-		appFooter,
-		darkMode
+		appFooter
+	},
+	created: function(){
+		if( window.matchMedia('(prefers-color-scheme: dark)').matches ){
+			this.$store.commit('toggleTheme', 'dark');
+		}
+	},
+	mounted: function(){
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+			if( event.matches ){
+				this.$store.commit('toggleTheme', 'dark');
+			} else {
+				this.$store.commit('toggleTheme', 'light');
+			}
+		});
 	}
 }
 </script>

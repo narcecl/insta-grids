@@ -1,5 +1,14 @@
 [v-cloak] > * {display:none;}
 
+.btn-holder{
+	a{
+		display:inline-block;
+		margin-right:16px;
+
+		&:last-of-type{margin-right:0;}
+	}
+}
+
 hr{
 	border-top:none;
 	border-bottom:1px solid #ddd;
@@ -103,7 +112,7 @@ figure{
 .w-height{height:auto;}
 
 $max: 100;
-$step: 5;
+$step: 4;
 @for $i from 0 through ceil($max/$step) {
 	$value: $i * $step;
 	.w-#{$value}{width: 0% + $value}

@@ -8,12 +8,12 @@
 	export default{
 		computed: {
 			classController: function(){
-				return ( this.$store.getters.isDark ) ? 'fa-sun-o' : 'fa-moon-o';
+				return ( this.$store.getters.getTheme === 'dark' ) ? 'fa-sun-o' : 'fa-moon-o';
 			}
 		},
 		methods: {
 			toggleDark: function(){
-				this.$store.commit('toggleDark');
+				this.$store.commit('toggleTheme');
 			}
 		}
 	}
@@ -21,9 +21,9 @@
 
 <style lang="scss" scoped>
 	a{
-		position: fixed;
-		right: 30px;
-		top: 24%;
+		// position: fixed;
+		// right: 30px;
+		// top: 24%;
 		padding: 10px;
 		border-radius: 100%;
 		font-size: 30px;
