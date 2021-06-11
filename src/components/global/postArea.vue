@@ -92,7 +92,7 @@
 			}
 		},
 		created: function(){
-			console.log('posts =>', this.$store.getters.getPosts);
+			//console.log('posts =>', this.$store.getters.getPosts);
 		},
 		mounted: function(){
 			this.ready = true;

@@ -29,7 +29,7 @@
 		},
 		methods: {
 			openLogin: function(){
-				console.error('not implemented');
+				// console.error('not implemented');
 			}
 		}
 	}
