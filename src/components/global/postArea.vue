@@ -1,44 +1,49 @@
 <template>
-	<div class="post-area" :class="{ 'mt-48': postsList.length }">
-		<div class="cont" ref="cont">
-			<div class="row total mini" v-show="ready">
-				<div class="col-4" v-for="(post, index) in postsList" :key="index" draggable @dragstart="dragEvent($event)">
-					<div class="grid-item" :style="[sizeController, { backgroundImage: 'url(' + post.image + ')' }]">
-						<div class="grid-cont">
-							<a href="#" class="delete-item" @click.prevent="confirmDelete(index)">
-								<span class="fa fa-trash"></span>
-							</a>
+	<section class="pt-4" :class="{ 'pb-48': postsList.length }">
+		<div :class="{container: !isMobileViewport}">
+			<div class="post-area">
+				<div class="cont" ref="cont">
+					<draggable class="row total" :class="{extramini: isMobileViewport}" v-model="postsList" @start="drag=true" @end="drag=false">
+						<div class="col-4" v-for="(post, index) in postsList" :key="index">
+							<div class="grid-item" :style="[sizeController, {backgroundImage: 'url(' + post.image + ')' }]">
+								<div class="grid-cont">
+									<a href="#" class="delete-item" @click.prevent="confirmDelete(index)">
+										<span class="fa fa-trash"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</draggable>
+				</div>
+
+				<transition name="fade">
+					<div class="prompt" v-if="prompt">
+						<div class="h-100 d-flex align-items-center justify-content-center">
+							<div class="cont text-center">
+								<h6 class="heading-4 text-white">¿Estás seguro que quieres eliminar esta imagen?</h6>
+								<p class="f-large text-white">Esta acción no se puede deshacer y si la necesitas, tendrás que subirla de nuevo.</p>
+
+								<div class="btn-holder mt-32">
+									<btn @click="deletePost" text="Aceptar"/>
+									<btn @click="cancelDelete" text="Cancelar"/>
+								</div>
+							</div>
 						</div>
 					</div>
-					<p class="text-white text-center mt-4">{{ index }}</p>
-				</div>
+				</transition>
 			</div>
 		</div>
-
-		<transition name="fade">
-			<div class="prompt" v-if="prompt">
-				<div class="h-100 d-flex align-items-center justify-content-center">
-					<div class="cont text-center">
-						<h6 class="heading-4 text-white">¿Estás seguro que quieres eliminar esta imagen?</h6>
-						<p class="f-large text-white">Esta acción no se puede deshacer.</p>
-
-						<div class="btn-holder mt-32">
-							<btn @click="deletePost" text="Aceptar"/>
-							<btn @click="cancelDelete" text="Cancelar"/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</transition>
-	</div>
+	</section>
 </template>
 
 <script>
+	import draggable from 'vuedraggable';
 	import btn from './button.vue';
 
 	export default{
 		components: {
-			btn
+			btn,
+			draggable
 		},
 		data: function(){
 			return {
@@ -51,15 +56,21 @@
 			}
 		},
 		computed: {
-			postsList: function(){
-				return this.$store.getters.getPosts;
+			postsList: {
+				get: function(){
+					// Obtenemos la lista del store
+					return this.$store.getters.getPosts;
+				},
+				set: function(posts){
+					// Actualizamos cuando movemos
+					this.$store.commit('updatePostsList', posts);
+				}
 			},
 			sizeController: function(){
 				if( this.ready ){
-					let item_width = (this.containerWidth / this.items_per_row) - 10;
-
+					let item_width = (this.containerWidth / this.items_per_row) - 20;
 					return {
-						width: item_width > 0 ? item_width + 'px' : false,
+						//width: item_width > 0 ? item_width + 'px' : false,
 						height: item_width > 0 ? item_width + 'px' : false
 					};
 				}
@@ -78,31 +89,19 @@
 			cancelDelete: function(){
 				this.prompt = false;
 				this.selected_index = null;
-			},
-			changeEvent: function(e){
-				console.log('change =>', this.$store.getters.getPosts);
-			},
-			sortEvent: function(e){
-				this.$store.commit('updatePosts', e.items);
-			},
-			dragEvent: function(){
-				console.log('wa');
-			},
-			dragEnd: function(){
-				console.log('end');
 			}
 		},
 		created: function(){
-			console.log('created');
 			console.log('posts =>', this.$store.getters.getPosts);
 		},
 		mounted: function(){
-			console.log('mounted');
 			this.ready = true;
 			this.containerWidth = this.$refs.cont.offsetWidth;
 
 			window.addEventListener('resize', () => {
-				this.containerWidth = this.$refs.cont.offsetWidth;
+				if( typeof this.$refs.cont !== 'undefined' ){
+					this.containerWidth = this.$refs.cont.offsetWidth;
+				}
 			});
 		}
 	}
@@ -131,7 +130,9 @@
 			overflow: hidden;
 
 			&:hover{
-				.delete-item{opacity:1;}
+				.delete-item{
+					opacity:1;
+				}
 			}
 
 			.delete-item{

@@ -1,21 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-// import Grid from 'vue-js-grid'
-// import draggable from 'vuedraggable';
+// Dependencias
+import Vue from 'vue';
+import Vuex from 'vuex';
+import "@/assets/scss/main.scss";
 
-import App from './App.vue'
-import $store from './store'
+// Plugins
+import draggable from 'vuedraggable';
 
-import "@/assets/scss/main.scss"
+// Mixins
+import mobile from '@/mixins/mobile';
 
-Vue.config.productionTip = false
+// App / Store
+import App from './App.vue';
+import $store from './store';
+
+Vue.config.productionTip = false;
 
 Vue.use(Vuex);
-// Vue.component('draggable', draggable);
+Vue.mixin(mobile);
+Vue.component('draggable', draggable);
 
 const store = new Vuex.Store( $store );
 
 new Vue({
 	store,
 	render: h => h(App),
-}).$mount('#app')
+})
+.$mount('#app')

@@ -24,13 +24,14 @@ p{font-size:14px;line-height:normal;color:#555;}
 	}
 }
 
-.seccion{
+.section{
 	padding:48px 0;
 }
 
 #app{
 	min-height:100vh;
 	transition:all .3s ease;
+	overflow-x:hidden;
 	
 	&.dark{
 		background:#191919;

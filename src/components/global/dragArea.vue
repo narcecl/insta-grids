@@ -1,14 +1,18 @@
 <template>
-	<div class="drag-area">
-		<label for="images" @drop.prevent="handleDrop" @dragover.prevent @dragenter.prevent>
-			<div class="drag-cont">
-				<span class="fa fa-picture-o"></span>
-				<h2 class="mb-4 fw-semibold">Empieza a crear tu feed</h2>
-				<p class="w-100 w-sm-35 center">Arrastra tus imágenes o haz clic aquí para buscarlas entre tus archivos.</p>
+	<section class="section">
+		<div class="container">
+			<div class="drag-area">
+				<label for="images" @drop.prevent="handleDrop" @dragover.prevent @dragenter.prevent>
+					<div class="drag-cont">
+						<span class="fa fa-picture-o"></span>
+						<h2 class="mb-4 fw-semibold">Empieza a crear tu feed</h2>
+						<p class="w-100 w-sm-35 center">Arrastra tus imágenes o haz clic aquí para buscarlas entre tus archivos.</p>
+					</div>
+					<input type="file" ref="file" id="images" multiple accept="image/x-png,image/gif,image/jpeg" @change="handleFile">
+				</label>
 			</div>
-			<input type="file" ref="file" id="images" multiple accept="image/x-png,image/gif,image/jpeg" @change="handleFile">
-		</label>
-	</div>
+		</div>
+	</section>
 </template>
 
 <script>
@@ -19,21 +23,18 @@
 				url: null
 			};
 		},
-		methods: {
+		methods: {
 			addPost: function(items){
-				items.forEach(item => {
-					this.$store.commit('addPost', URL.createObjectURL(item));
-				});
+				// Agregamos el nuevo item al store
+				items.forEach(item => this.$store.commit('addPost', URL.createObjectURL(item)) );
 			},
 			handleFile: function(e){
-				if( e.target.files.length ){
-					this.addPost(e.target.files);
-				}
+				// Si encontramos un archivo, lo agregamos
+				if( e.target.files.length ) this.addPost(e.target.files);
 			},
 			handleDrop: function(e){
-				if( e.dataTransfer.files.length ){
-					this.addPost(e.dataTransfer.files);
-				}
+				// Si dejamos un archivo, lo agregamos
+				if( e.dataTransfer.files.length ) this.addPost(e.dataTransfer.files);
 			}
 		}
 	}
@@ -81,9 +82,6 @@
 				width: 0;
 				height: 0;
 				position:absolute;
-				// opacity:0;
-				// left:0;
-				// top: 0;
 			}
 		}
 	}

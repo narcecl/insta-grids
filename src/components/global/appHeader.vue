@@ -5,14 +5,14 @@
 				<div class="col-8">
 					<div class="mark-content">
 						<h1>Grids</h1>
-						<span>Feed Planner</span>
+						<span>Instagram Feed Planner</span>
 					</div>
 				</div>
 				<div class="col-4 text-right">
 					<darkMode/>
 				</div>
 				<!-- <div class="col-6 text-right">
-					<button class="btn-ingresar" text="Ingresar con Instagram" icon="instagram" :func="openLogin"/>
+					<button class="btn-ingresar" text="Ingresar con Instagram" icon="instagram" :func="openLogin"></button>
 				</div> -->
 			</div>
 		</div>
@@ -20,18 +20,16 @@
 </template>
 
 <script>
-	// import button from './button.vue';
 	import darkMode from './darkMode.vue';
 
 	export default{
 		name: 'appHeader',
 		components: {
-			// button,
 			darkMode
 		},
 		methods: {
 			openLogin: function(){
-				alert('wa');
+				console.error('not implemented');
 			}
 		}
 	}
@@ -54,7 +52,7 @@
 			}
 
 			span{
-				font-size:13px;
+				font-size: 13px;
 				color: rgba(255,255,255,.8);
 				
 			}
@@ -73,8 +71,8 @@
 			}
 
 			&:hover{
-				background:#fff;
-				color:#333;
+				background: #fff;
+				color: #333;
 			}
 		}
 	}

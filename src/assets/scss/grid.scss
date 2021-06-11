@@ -36,6 +36,16 @@ html{box-sizing:border-box;-ms-overflow-style:scrollbar;}
 	margin-right:-15px;
 	margin-left:-15px;
 
+	&.extramini{
+		margin-left: -2.5px;
+		margin-right: -2.5px;
+
+		> .col, > [class*="col-"], > *{
+			padding-left:2.5px;
+			padding-right:2.5px;
+		}
+	}
+
 	&.mini{
 		margin-left: -7.5px;
 		margin-right: -7.5px;
@@ -48,15 +58,16 @@ html{box-sizing:border-box;-ms-overflow-style:scrollbar;}
 
 	&.total{
 		margin: -15px;
-		> .col, > [class*="col-"], > *{
-			padding:15px;
-		}
+		> .col, > [class*="col-"], > *{padding:15px;}
 
 		&.mini{
 			margin:-7.5px;
-			> .col, > [class*="col-"], > *{
-				padding:7.5px;
-			}
+			> .col, > [class*="col-"], > *{padding:7.5px;}
+		}
+
+		&.extramini{
+			margin:-2.5px;
+			> .col, > [class*="col-"], > *{padding:2.5px;}
 		}
 	}
 

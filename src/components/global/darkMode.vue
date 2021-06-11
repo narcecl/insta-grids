@@ -24,7 +24,6 @@
 		// position: fixed;
 		// right: 30px;
 		// top: 24%;
-		padding: 10px;
 		border-radius: 100%;
 		font-size: 30px;
 		transition: all .3s ease;
