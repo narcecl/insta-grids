@@ -2,13 +2,13 @@
 	<footer class="app-footer">
 		<div class="container">
 			<div class="row total mini">
-				<div class="col-12 col-sm-12">
+				<div class="col-12 col-sm-6">
 					<p><span class="fa fa-heart mr-8"></span>Desarrollado con amor por <a href="https://www.narce.cl" target="_blank">Nicolás Arce</a>.</p>
 				</div>
-				<!-- <div class="col-12 col-sm-4 text-center">
+				<div class="col-12 col-sm-6 text-left text-md-right">
 					<p><span class="fa fa-coffee mr-8"></span>¿Te gustó la app? <a href="https://ko-fi.com/narcecl" target="_blank">Regalame un café</a>.</p>
 				</div>
-				<div class="col-12 col-sm-4 text-center text-sm-right">
+				<!-- <div class="col-12 col-sm-4 text-center text-sm-right">
 					<p><span class="fa fa-bug mr-8"></span>¿Tuviste algún problema? <a href="#">Cuentamelo</a>.</p>
 				</div> -->
 			</div>

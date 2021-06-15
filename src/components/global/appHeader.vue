@@ -3,34 +3,55 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-8">
-					<div class="mark-content">
-						<h1>Grids</h1>
+					<div class="logo d-flex align-items-center">
+						<!-- <span class="fa fa-th isotype"></span> -->
+						<h1>Grids <span>planner</span></h1>
 						<span>Instagram Feed Planner</span>
 					</div>
 				</div>
-				<div class="col-4 text-right">
-					<darkMode/>
+				<div class="col-4">
+					<div class="d-flex align-items-center justify-content-end">
+						<a href="#" class="btn-ingresar" @click.prevent="openLogin">
+							<span class="fa fa-instagram"></span>
+							<span class="d-none d-sm-inline-block ml-8">Ingresar con Instagram</span>
+						</a>
+						<dark-mode/>
+					</div>
 				</div>
-				<!-- <div class="col-6 text-right">
-					<button class="btn-ingresar" text="Ingresar con Instagram" icon="instagram" :func="openLogin"></button>
-				</div> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import darkMode from './darkMode.vue';
 
 	export default{
-		name: 'appHeader',
-		components: {
-			darkMode
+		data: function(){
+			return {
+			};
 		},
 		methods: {
 			openLogin: function(){
-				// console.error('not implemented');
+				this.$store.dispatch('showLogin');
 			}
+		},
+		created: function(){
+			// this.$axios({
+			// 	method: 'get',
+			// 	url: this.instagram_base,
+			// 	data: {
+			// 		client_id: '476586483443014',
+			// 		redirect_uri: 'http://localhost:8080',
+			// 		scope: 'user_media',
+			// 		response_type: 'code'
+			// 	}  
+			// })
+			// .then( response => {
+			// 	console.log('response => ', response);
+			// })
+			// .catch( error => {
+			// 	console.error('error =>', error);
+			// })
 		}
 	}
 </script>
@@ -40,15 +61,29 @@
 		padding:18px 0;
 		background: #333;
 
-		.mark-content{
-			> *{display:inline-block;vertical-align:middle;}
+		.logo{
+			.isotype{
+				font-size: 42px;
+				margin-right: 12px;
+				margin-top: 2px;
+				margin-bottom: -6px;
+			}
+
 			h1{
 				color:#fff;
-				font-size: 28px;
+				font-size: 26px;
 				font-weight:700;
 				border-right:solid 1px rgba(255,255,255,.5);
-				padding-right:12px;
-				margin-right:12px;
+				padding-right:20px;
+				margin-right:20px;
+
+				span{
+					color: #fff;;
+					display: block;
+					margin-top:2px;
+					font-size:16px;
+					font-weight: 200;;
+				}
 			}
 
 			span{
@@ -59,20 +94,26 @@
 		}
 
 		.btn-ingresar{
+			// background: rgb(112,59,188);
+			// background: linear-gradient(90deg, rgba(112,59,188,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+			background: #555;
 			color: #fff;
-			border:solid 1px #fff;
+			border:none;
 			padding:10px 18px;
 			border-radius: 30px;
-			font-size:12px;
+			font-size:14px;
 			transition: all .3s ease;
-			
-			.fa{
-				font-size:16px !important;
-			}
+			margin-right:32px;
+			text-decoration: none;
 
 			&:hover{
-				background: #fff;
-				color: #333;
+				background: #444;
+			}
+			
+			.fa{
+				display:inline-block;
+				vertical-align: text-bottom;
+				font-size:20px;
 			}
 		}
 	}

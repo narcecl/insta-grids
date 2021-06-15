@@ -1,6 +1,7 @@
 export default{
 	state: {
 		theme: 'light',
+		instagram_login: null,
 		posts: []
 	},
 	getters: {
@@ -11,6 +12,11 @@ export default{
 		getPosts: function( state ){
 			// Devuelve array de posts
 			return state.posts;
+		}
+	},
+	actions: {
+		showLogin: function(context){
+			context.commit('showLogin')
 		}
 	},
 	mutations: {
@@ -38,6 +44,17 @@ export default{
 		updatePostsList: function(state, value){
 			// Actualizamos la lista de posts desde el postsArea (vuedraggable)
 			state.posts = value;
+		},
+		showLogin: function(state){
+			// Levantamos la ventana de login de facebook
+			let x = (window.innerWidth / 2) - 250,
+				y = (window.innerHeight / 2);
+
+			state.instagram_login = window.open('https://www.instagram.com/oauth/authorize?client_id=476586483443014&redirect_uri=https://www.narce.cl/proyectos/grids-planner&scope=user_profile,user_media&response_type=code', '', 'width=500,height=600,resizable=no,location=no,toolbar=no,titlebar=no,status=no,scrollbars=no,left='+x+',top='+y);
+		},
+		closeLogin: function(state){
+			// obtenemos el codigo de verificacion y cerramos el login
+			state.instagram_login.close();
 		}
 	}
 }

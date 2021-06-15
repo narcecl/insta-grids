@@ -29,8 +29,8 @@
 		transition: all .3s ease;
 		background:#333;
 		color:#fff;
-		width: 50px;
-		height: 50px;
+		width: 30px;
+		height: 30px;
 		text-align: center;
 	}
 </style>

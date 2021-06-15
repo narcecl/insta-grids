@@ -11,7 +11,9 @@
 		<noscript>
 			<strong>Lo siento, esta aplicación no funciona sin JavaScript, por favor habilitalo en tu navegador para poder utilizarla.</strong>
 		</noscript>
-		<div id="app"></div>
-		<!-- built files will be auto injected -->
+
+		<div id="app" :class="{ dark: $store.getters.getTheme === 'dark' }">
+			<router-view></router-view>
+		</div>
 	</body>
 </html>
