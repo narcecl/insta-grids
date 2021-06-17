@@ -36,22 +36,23 @@
 			}
 		},
 		created: function(){
-			// this.$axios({
-			// 	method: 'get',
-			// 	url: this.instagram_base,
-			// 	data: {
-			// 		client_id: '476586483443014',
-			// 		redirect_uri: 'http://localhost:8080',
-			// 		scope: 'user_media',
-			// 		response_type: 'code'
-			// 	}  
-			// })
-			// .then( response => {
-			// 	console.log('response => ', response);
-			// })
-			// .catch( error => {
-			// 	console.error('error =>', error);
-			// })
+			this.$axios({
+				method: 'post',
+				url: 'https://api.instagram.com/oauth/access_token',
+				data: {
+					client_id: '476586483443014',
+					client_secret: '3b211b44e23f75a9f6c546ecee953841',
+					code: 'AQD6GxP316gsMj-n8avH5f6mhaTVperzewbHDRNcr6qiTYQjr9WacSDMFeXvbw_1tl5R0C6taJbHzWS7QXh5LcygnvF_Cvywb27rgka4n3qKVsDBWMeyJjDq2K5VblT5fJhLjVjo0v_HtV-drfOg1wlqQaOw9tjXNdtRbkLh855kMvmAO0HJJ2b1v1WloPGYrKjxrLdGOHfkF8JDbAUlHjG88vXKWR3PXDdvC_mv7CYQmA#_',
+					grant_type: 'authorization_code',
+					redirect_uri: 'https://www.narce.cl/proyectos/grids-planner'
+				}  
+			})
+			.then( response => {
+				console.log('response => ', response);
+			})
+			.catch( error => {
+				console.error('error =>', error);
+			});
 		}
 	}
 </script>
